@@ -1,4 +1,4 @@
-createDb: true #true or false
+createDb: true #true or false 
 ingressEnabled: false #true or false
 nodeSelectorEnabled: false #true or false
 
