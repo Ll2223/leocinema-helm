@@ -1,0 +1,47 @@
+createDb: true #true or false
+ingressEnabled: false #true or false
+nodeSelectorEnabled: false #true or false
+
+#ingressIp: "<INGRESS_IP>"
+
+localhost:
+  frontend: 8485
+  backend: 8687
+
+db:
+    image: bitnami/mariadb:latest
+    servicePort: 3306
+    minReplicas: 1
+    maxReplicas: 3
+    averageUtilization: 70
+    requests:
+      storage: 1Gi
+
+backend:
+    image: leobgs/leocinema-backend:1.0.0
+    servicePort: 80
+    pullPolicy: IfNotPresent
+    minReplicas: 1
+    maxReplicas: 3
+    averageUtilization: 70
+    requests:
+      cpu: "100m"
+      memory: "200Mi"
+
+frontend:
+    image: leobgs/leocinema-frontend:1.0.0
+    servicePort: 80
+    pullPolicy: IfNotPresent
+    minReplicas: 1
+    maxReplicas: 3
+    averageUtilization: 70
+    requests:
+      cpu: "100m"
+      memory: "200Mi"
+
+env:
+  mariadb_root_password: "leo29032024-dev"
+  db_host: "mariadb-dev-svc"
+  db_database: "leocinemadb-dev"
+  db_user: "leocinemauser-dev"
+  db_password: "leocinemapass-dev"
